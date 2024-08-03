@@ -1,0 +1,104 @@
+<br><br>
+<div class="container">
+  <form>
+    <div class="card">
+      <div class="card-header text-white bg-primary">
+        <h4>Usuário</h4>
+      </div>
+      <div class="card-body">
+        <div class="row justify-content-center mt-4">
+          <div class="col-md-6 form-group">
+            <label for="pessoa" class="form-label titulo">Selecione o usuário(clique abaixo):</label>
+            <select class="form-control" name="pessoa" [(ngModel)]="pessoa" (change)="exibirPessoa()">
+              <option *ngFor="let p of pessoas" [ngValue]="p"> {{ p.nome }} </option>
+            </select>
+          </div>
+        </div>
+        <div class="row justify-content-center mt-4">
+          <div class="form-group col-md-2">
+            <button type="submit" class="form-control btn btn-warning botao-voltar" (click)="voltar()">
+                <i class="bi bi-arrow-left"></i> Voltar
+            </button>
+          </div>
+          <div class="col-md-2">
+            <button type="button" class="form-control btn btn-secondary botao-limpar" (click)="limpar()">
+              <i class="bi bi-x-circle"></i> Limpar
+            </button>
+          </div>
+          <div class="col-md-3">
+            <button type="submit" class="btn btn-primary w-100 botao-consultar" (click)="consultarTodos()">Consultar Todos</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+  <h2 class="cidadao">Cidadão</h2>
+  <br><br>
+  <table *ngIf="mostrarTabela" class="table table-hover table-striped">
+    <thead>
+      <th>Nome</th>
+      <th>CPF</th>
+      <th>Sexo</th>
+      <th>Data de Nascimento</th>
+      <th>Doença Preexistente</th>
+      <th>Bairro</th>
+      <th>Lograouro</th>
+      <th>Número</th>
+      <th>Email</th>
+      <th>Telefone</th>
+      <th>Ações</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let pessoa of definirTipoDaExibicao()">
+        <td>{{ pessoa.nome }}</td>
+        <td>{{ pessoa.cpf }}</td>
+        <td>{{ pessoa.sexo }}</td>
+        <td>{{ pessoa.dataNascimento | date: 'dd/MM/yyyy' }}</td>
+        <td>{{ pessoa.doencaPreexistente }}</td>
+        <td>{{ pessoa.enderecoDaPessoa.bairro }}</td>
+        <td>{{ pessoa.enderecoDaPessoa.logradouro }}</td>
+        <td>{{ pessoa.enderecoDaPessoa.numero }}</td>
+        <td>{{ pessoa.contatoDaPessoa.email }}</td>
+        <td>{{ pessoa.contatoDaPessoa.telefone }}</td>
+        <td>
+            <button class="btn btn-xs btn-primary " (click)="editar(pessoa)">
+              <i class="bi bi-x"></i>Editar
+            </button>
+            <button class="btn btn-danger " (click)="excluir(pessoa)">
+              <i class="bi bi-x"></i>Excluir
+            </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<!--
+              COMENTÁRIO 1
+
+ A tag <ng-container> é uma diretiva estrutural
+do Angular que é usada como um marcador de lugar
+no HTML. Ela não é renderizada como um elemento
+HTML real no DOM final, o que significa que não
+adiciona nenhuma marcação extra à sua página.
+Em vez disso, é útil para agrupar elementos sem
+adicionar qualquer nó extra ao DOM.
+
+A <ng-container> é comumente usada em situações onde
+  você precisa aplicar diretivas estruturais,
+  como *ngIf e *ngFor, a um conjunto de elementos
+  adjacentes sem adicionar uma div ou outro elemento
+  ao DOM. Isso é útil para manter seu HTML limpo e semântico.
+
+No exemplo que você forneceu, <ng-container> é usado para
+  condicionalmente renderizar(ou não) uma linha de tabela (<tr>)
+    com base na existência do objeto "pessoa". Dentro dessa
+    <ng-container>, você tem elementos <td> para exibir as
+      propriedades do estoque, bem como botões para editar
+      e excluir o estoque. Usar <ng-container> dessa maneira
+        permite aplicar a lógica condicional diretamente aos
+        elementos da tabela sem adicionar uma div ou outro
+        elemento ao DOM.
+-->
+

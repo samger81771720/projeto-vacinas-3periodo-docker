@@ -1,0 +1,203 @@
+<br><br>
+<div class="container">
+  <form>
+    <div class="card">
+      <div class="card-header text-white bg-primary">
+        <h4>Vacinas</h4>
+      </div>
+      <div class="card-body">
+        <div class="row linha1">
+          <div class="col-md-3 form-group">
+            <label for="vacina" class="form-label titulo">Vacina:</label>
+            <select class="form-control" name="vacina" [(ngModel)]="vacinaSeletor.nomeVacina">
+              <option value="" disabled selected>Clique numa vacina para selecioná-la</option>
+              <option *ngFor="let v of listaDeVacinas" [ngValue]="v.nome"> {{ v.nome }} </option>
+            </select>
+          </div>
+          <div class="col-md-3 form-group">
+            <label for="categoria" class="form-label titulo">Categoria:</label>
+            <select class="form-control" name="categoria" [(ngModel)]="vacinaSeletor.categoria">
+              <option value="" disabled selected>Clique numa categoria para selecioná-la</option>
+              <option *ngFor="let c of listaDeCategorias" [ngValue]="c">{{ c }}</option>
+            </select>
+          </div>
+          <div class="col-md-2 form-group">
+            <label for="contraInidicacao" class="form-label titulo">Contra Indicação:</label>
+            <select class="form-control" name="contraInidicacao" [(ngModel)]="vacinaSeletor.contraIndicacao">
+              <!-- COMENTÁRIO 3 -->
+              <option value="" disabled selected>Clique em "Sim" ou "Não"</option>
+              <option [value] = "true"> Sim </option>
+              <option [value] = "false"> Não </option>
+            </select>
+          </div>
+          <div class="col-md-2 form-group">
+            <label for="idadeMinima" class="form-label titulo">Idade Minínima:</label>
+            <input type="number" id="idadeMinima" class="form-control" name="idadeMinima"
+                  [(ngModel)]="vacinaSeletor.idadeMinima" placeholder="Indique a idade">
+          </div>
+          <div class="col-md-2 form-group">
+            <label for="idadeMaxima" class="form-label titulo">Idade Máxima:</label>
+            <input type="number" id="idadeMaxima" class="form-control" name="idadeMaxima"
+                  [(ngModel)]="vacinaSeletor.idadeMaxima" placeholder="Indique a idade">
+          </div>
+        </div>
+        <div class="row linha2">
+          <div class="col-md-2 form-group linha">
+            <label for="fabricante" class="form-label titulo">Fabricante:</label>
+            <select class="form-control" name="fabricante" [(ngModel)]="vacinaSeletor.nomeFabricante">
+              <option value="" disabled selected>Clique num fabricante para selecioná-lo</option>
+              <option *ngFor="let f of listaDeFabricantes" [ngValue]="f.nome">{{ f.nome }}</option>
+            </select>
+          </div>
+          <div class="col-md-2 form-group linha">
+            <label for="unidade" class="form-label titulo">Unidade:</label>
+            <select class="form-control" name="unidade" [(ngModel)]="vacinaSeletor.nomeUnidade">
+              <option value="" disabled selected>Clique numa unidade para selecioná-la</option>
+              <option *ngFor="let u of listaDeUnidades" [ngValue]="u.nome">{{ u.nome }}</option>
+            </select>
+          </div>
+          <div class="col-md-4 form-group linha">
+            <label for="nomeBairro" class="form-label titulo">Nome do Bairro:</label>
+            <input type="text" id="nomeBairro" class="form-control" name="nomeBairro"
+                  [(ngModel)]="vacinaSeletor.nomeBairro" placeholder="Escreva aqui o nome do bairro desejado">
+          </div>
+          <div class="col-md-4 form-group linha">
+            <label for="numeroCep" class="form-label titulo">Número do CEP:</label>
+            <input type="text" id="numeroCep" class="form-control" name="numeroCep"
+                  [(ngModel)]="vacinaSeletor.numeroCep" placeholder="Escreva aqui o número do CEP desejado">
+          </div>
+        </div>
+        <div class="row mb-3 botoes">
+          <div class="form-group col-md-2">
+            <button type="submit" class="form-control btn botao-voltar" (click)="voltar()">
+                <i class="bi bi-arrow-left"></i> Voltar
+            </button>
+          </div>
+          <div class="col-md-3">
+            <button type="button" class="form-control btn btn-secondary botao-limpar" (click)="limpar()">
+              <i class="bi bi-x-circle"></i> Limpar
+            </button>
+          </div>
+          <div class="col-md-3">
+              <button type="submit" class="btn botao-consultarTodos w-100" (click)="pesquisarSemFiltros()">Pesquisar Sem Filtros</button>
+          </div>
+          <div class="col-md-4">
+            <button type="submit" class="btn btn-primary w-100 filtros" (click)="pesquisarComFiltros()">"Consultar Com Filtros"</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+  <br>
+  <h2 class="">Vacinas Disponíveis</h2>
+  <br><br>
+  <table *ngIf="mostrarTabela" class="table table-hover table-striped">
+    <thead>
+      <th>Unidade</th>
+      <th>Vacina</th>
+      <th>Fabricante</th>
+      <th>Categoria</th>
+      <th>Idade Mínima</th>
+      <th>Idade Máxima</th>
+      <th>Contra-indicação</th>
+      <th>Endereco</th>
+      <th>Contato</th>
+      <th></th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let vDTO of listaVacinasDTO">
+        <td>{{ vDTO.unidade.nome }}</td>
+        <td>{{ vDTO.vacina.nome }}</td>
+        <td>{{ vDTO.fabricante.nome }} </td>
+        <td>{{ vDTO.vacina.categoria }}</td>
+        <td>{{ vDTO.vacina.idadeMinima }}</td>
+        <td>{{ vDTO.vacina.idadeMaxima }}</td>
+        <td>{{ vDTO.vacina.contraIndicacao ? 'Sim' : 'Não' }}</td>
+        <td>{{ vDTO.unidade.enderecoDaUnidade.logradouro }}, {{ vDTO.unidade.enderecoDaUnidade.numero }}, {{ vDTO.unidade.enderecoDaUnidade.bairro }}</td>
+        <td>Tel.: {{ vDTO.unidade.contatoDaUnidade.telefone }} ({{ vDTO.unidade.contatoDaUnidade.email }})</td>
+      </tr>
+    </tbody>
+
+    <nav aria-label="Page navigation example">
+
+
+      <div class="col-md-25">
+
+        <label for="quantidadeRegistros">Nº registros p/ página:</label>
+
+        <select class="form-select" [(ngModel)]="vacinaSeletor.limite" (change)="atualizarQtdeRegistrosPorPagina()">
+          <option value="3">3</option>
+          <option value="5">5</option>
+          <option value="10">10</option>
+      </select>
+      </div>
+
+      <ul class="pagination">
+        <li class="page-item"><a class="page-link" (click)="anterior()">Previous</a></li>
+        <li class="page-item"><a class="page-link" (click)="posterior()">Next</a></li>
+      </ul>
+
+    </nav>
+
+  </table>
+
+  <!-- Adicionando o rodapé com a palavra "Página" e o valor dinâmico da página atual -->
+  <footer class="footer">
+    Página {{ vacinaSeletor.pagina }}
+  </footer>
+
+</div>
+<!--
+COMENTÁRIO 1:
+
+A tag <ng-container> é uma diretiva estrutural
+do Angular que é usada como um marcador de lugar
+no HTML. Ela não é renderizada como um elemento
+HTML real no DOM final, o que significa que não
+adiciona nenhuma marcação extra à sua página.
+Em vez disso, é útil para agrupar elementos sem
+adicionar qualquer nó extra ao DOM.
+
+A <ng-container> é comumente usada em situações onde
+  você precisa aplicar diretivas estruturais,
+  como *ngIf e *ngFor, a um conjunto de elementos
+  adjacentes sem adicionar uma div ou outro elemento
+  ao DOM. Isso é útil para manter seu HTML limpo e semântico.
+
+No exemplo que você forneceu, <ng-container> é usado para
+  condicionalmente renderizar(ou não renderizar) uma linha de tabela (<tr>)
+    com base na existência do objeto estoque. Dentro dessa
+    <ng-container>, você tem elementos <td> para exibir as
+      propriedades do estoque, bem como botões para editar
+      e excluir o estoque. Usar <ng-container> dessa maneira
+        permite aplicar a lógica condicional diretamente aos
+        elementos da tabela sem adicionar uma div ou outro
+        elemento ao DOM.
+-->
+
+<!--
+                  COMENTÁRIO 2
+
+No Angular, (change) é uma ligação de evento que escuta
+o evento change em um elemento HTML, como <select>, <input>
+  ou <textarea>. Quando o valor do elemento muda (por exemplo,
+    uma nova opção é selecionada em um dropdown), o método
+    ou expressão especificada é executado.
+
+No seu caso, (change)="selecionarEstoque()" significa que,
+ sempre que a opção selecionada no elemento <select> mudar,
+   o método selecionarEstoque() é chamado.
+-->
+
+<!--
+                  COMENTÁRIO 3
+
+Quando você está lidando com uma propriedade booleana
+(vacinaSeletor.contraIndicacao) em um <select> em Angular,
+  você precisa garantir que os valores das opções sejam de
+  fato booleanos e não strings. Em HTML, o valor do atributo
+  value sempre é uma string, então é necessário converter
+  esses valores para booleanos no componente.
+
+-->
+

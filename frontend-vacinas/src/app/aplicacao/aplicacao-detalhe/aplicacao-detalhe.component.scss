@@ -1,0 +1,41 @@
+button {
+  border: 1px solid black;
+}
+
+input, select{
+  border: 0.5px solid #333;
+}
+
+.botao-cadastrar{
+  font-size: 16px;
+  font-weight: lighter;
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+label{
+  font-size: 18px;
+  font-family: var(--bs-font-sans-serif);
+  display: block; /* Garante que o label seja um bloco para a centralização */
+  width: 100%; /* Garante que o label ocupe a largura completa do contêiner */
+  text-align: center;
+  font-weight: 500;
+}
+
+input, select{
+  background-color: goldenrod;
+}
+
+.botao-voltar{
+  background-color:cadetblue;
+  font-size: 15px;
+}
+
+.botao-limpar{
+  background-color: rgb(124, 109, 109);
+  font-size: 15px;
+  color: white;
+}
+
+
+

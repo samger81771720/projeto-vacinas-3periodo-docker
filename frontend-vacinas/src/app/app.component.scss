@@ -1,0 +1,58 @@
+.fundo-imagem {
+  background-image: url('picture/Foto1.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 800px;
+  display: flex;
+  flex-direction: column; /* Adicione esta linha para que os itens dentro do contêiner sejam empilhados verticalmente */
+  justify-content: center;
+  align-items: center;
+  color: rgb(13, 110, 253);
+  border: 2px solid black;
+}
+
+.link-login {
+  margin-top: 20px; /* Adicione margem superior para separar o link da frase acima */
+}
+
+.frase-acesso-login{
+  font-size: 19px;
+  font-style: italic;
+}
+
+.titulo-do-sistema{
+  font-size: 23px;
+  font-style: italic;
+}
+
+.func{
+  font-style: italic;
+  color: rgb(13, 110, 253);
+}
+
+.func:hover{
+  text-decoration: none;
+  text-decoration: underline;
+  background-color:goldenrod;
+}
+
+.titulo{
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.about:hover{
+  text-decoration: underline;
+}
+
+.opcoes-do-menu{
+  margin-right: 150px;
+}
+
+nav{
+  border-top: 2px solid black;
+  border-left: 2px solid black;
+  border-right: 2px solid black;
+}
+

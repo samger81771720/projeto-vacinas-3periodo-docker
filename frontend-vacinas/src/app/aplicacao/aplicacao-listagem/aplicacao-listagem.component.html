@@ -1,0 +1,92 @@
+<br><br>
+<div class="container">
+  <form>
+    <div class="card">
+      <div class="card-header text-white bg-primary">
+          <h4>Carteirinha Virtual de Vacinação</h4>
+      </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-3 form-group">
+            <label for="id" class="form-label">Selecione nome do cidadão</label>
+            <select class="form-control" name="id"
+                    [(ngModel)]="seletor.idPessoaRecebeuAplicacao">
+                    <option value="" disabled selected>Clique numa unidade para selecioná-la</option>
+                @for(p of pessoas; track p.id) {
+                    <option value="{{ p.id }}">{{ p.nome }}</option>
+                }
+            </select>
+            </div>
+            <div class="col-md-2 form-group">
+                <label for="nomeUnidade" class="form-label">Selecione a unidade</label>
+                <select class="form-control" name="nomeUnidade"
+                        [(ngModel)]="seletor.nomeUnidadeAplicacao">
+                        <option value="" disabled selected>Clique numa unidade para selecioná-la</option>
+                    @for(u of unidades; track u.id) {
+                        <option value="{{ u.nome }}">{{ u.nome }}</option>
+                    }
+                </select>
+            </div>
+            <div class="col-md-3 form-group">
+              <label for="nomeVacina" class="form-label">Selecione a vacina</label>
+              <select class="form-control" name="nomeVacina"
+                      [(ngModel)]="seletor.nomeVacinaAplicada">
+                      <option value="" disabled selected>Clique numa unidade para selecioná-la</option>
+                  @for(v of vacinas; track v.id) {
+                      <option value="{{ v.nome }}">{{ v.nome }}</option>
+                  }
+              </select>
+            </div>
+              <div class="col-md-2 form-group">
+                <label for="dataInicial" class="form-label">Data inicial:</label>
+                <input type="date" class="form-control" name="dataInicial"
+                        [(ngModel)]="seletor.dataInicioPesquisaSeletor">
+              </div>
+              <div class="col-md-2 form-group">
+                <label for="dataFinal" class="form-label">Data final:</label>
+                <input type="date" class="form-control" name="dataFinal"
+                        [(ngModel)] = "seletor.dataFinalPesquisaSeletor">
+              </div>
+          </div>
+          <div class="row justify-content-center mt-5">
+            <div class="form-group col-md-2">
+              <button type="submit" class="form-control btn btn-warning botao botao-voltar" (click)="voltar()">
+              <i class="bi bi-arrow-left"></i> Voltar
+              </button>
+            </div>
+            <div class="col-md-2">
+              <button type="button" class="form-control btn btn-secondary botao botao-limpar" (click)="limpar()">
+                <i class="bi bi-x-circle"></i> Limpar
+              </button>
+            </div>
+            <div class="col-md-3">
+                <button type="submit" class="btn btn-primary w-100 botao botao-pesquisar" (click)="pesquisar()">Pesquisar</button>
+            </div>
+          </div>
+      </div>
+    </div>
+  </form>
+  <br>
+  <h2 class="">Aplicações</h2>
+  <br><br>
+  <table class="table table-hover table-striped">
+    <thead>
+      <th>Unidade</th>
+      <th>Vacina aplicada</th>
+      <th>Fabricante</th>
+      <th>Data da aplicação</th>
+    </thead>
+    <tbody>
+      @for(aplicacaoDTO of aplicacoesDTO; track aplicacaoDTO){
+        <tr>
+          <td>{{ aplicacaoDTO.aplicacao.unidadeOndeAplicou.nome }}</td>
+          <td>{{ aplicacaoDTO.aplicacao.vacinaAplicada.nome }} </td>
+          <td>{{ aplicacaoDTO.fabricanteDaVacinaAplicada }}</td>
+          <td>{{ aplicacaoDTO.aplicacao.dataAplicacao | date: 'dd/MM/yyyy' }}</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>
+
+

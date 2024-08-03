@@ -1,0 +1,63 @@
+<br>
+<div class="card">
+  <div class="card-header text-white bg-primary">
+    <h5>{{idUnidade && idVacina? 'Editar' : 'Cadastro de'}} Estoque </h5>
+  </div>
+    <form class="p-4">
+      <div class="row justify-content-center mt-2">
+        <div class="form-group col-md-2">
+          <label for="unidade" class="titulo">Unidade</label>
+          <select class="form-control" name="unidade" id="unidade"
+              [compareWith]="compareById"
+              [(ngModel)]="estoque.unidade" required>
+              <option value="" disabled selected>SELECIONE A UNIDADE</option>
+            @for(u of unidades; track u.id) {
+              <option [ngValue]="u">{{ u.nome }}</option>
+            }
+          </select>
+        </div>
+        <div class="form-group col-md-2">
+          <label for="vacina" class="titulo">Vacina</label>
+          <select class="form-control" name="vacina" id="vacina"
+              [compareWith]="compareById"
+              [(ngModel)]="estoque.vacina" required>
+              <option value="" disabled selected>SELECIONE A VACINA</option>
+            @for(v of vacinas; track v.id) {
+              <option [ngValue]="v">{{ v.nome }}</option>
+            }
+          </select>
+        </div>
+        <div class="form-group col-md-2">
+          <label for="qtde" class="titulo">Quantidade</label>
+          <input type="number" id="qtde" class="form-control" name="qtde"
+                [(ngModel)]="estoque.quantidade">
+        </div>
+        <div class="form-group col-md-2">
+          <label for="dataLote" class="titulo">Data do Lote</label>
+          <input type="date" class="form-control" name="dataLote" id="dataLote"
+          [(ngModel)]="estoque.dataLote" required>
+        </div>
+        <div class="form-group col-md-2">
+          <label for="validade" class="titulo">Validade</label>
+          <input type="date" class="form-control" name="validade" id="validade"
+          [(ngModel)]="estoque.validade" required>
+        </div>
+        </div>
+        <div class="row justify-content-center mt-5">
+          <div class="form-group col-md-2">
+            <button type="submit" class="form-control btn btn-warning botao-voltar" (click)="voltar()">
+                <i class="bi bi-arrow-left"></i> Voltar
+            </button>
+          </div>
+          <div class="col-md-2">
+            <button type="button" class="form-control btn btn-secondary botao-limpar" (click)="limparFormulario()">
+              <i class="bi bi-x-circle"></i> Limpar
+            </button>
+          </div>
+          <div class="col-md-3">
+            <button type="submit" class="btn btn-primary w-100 botao-cadastrar" (click)="salvar()">Cadastrar</button>
+          </div>
+        </div>
+    </form>
+</div>
+<br><br><br>

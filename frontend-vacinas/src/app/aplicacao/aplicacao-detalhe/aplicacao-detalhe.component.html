@@ -1,0 +1,66 @@
+<br><br>
+<div class="container">
+  <form>
+    <div class="card">
+      <div class="card-header text-white bg-primary">
+          <h4>Aplicação</h4>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-3 form-group">
+              <label for="nomePessoa" class="form-label">Selecione o nome da pessoa</label>
+              <select class="form-control" name="nomePessoa"
+                  [compareWith]="compareById"
+                  [(ngModel)]="aplicacao.pessoaQueRecebeu" required>
+                  @for(p of pessoas; track p.id) {
+                      <option [ngValue]="p"> {{ p.nome }} </option>
+                  }
+              </select>
+          </div>
+          <div class="col-md-3 form-group">
+            <label for="nomeVacina" class="form-label">Selecione a vacina</label>
+            <select class="form-control" name="nomeVacina"
+                  [compareWith]="compareById"
+                  [(ngModel)]="aplicacao.vacinaAplicada" required>
+                  @for(v of vacinas; track v.id) {
+                    <option [ngValue]="v"> {{ v.nome }} </option>
+                }
+            </select>
+          </div>
+          <div class="col-md-3 form-group">
+            <label for="nomeUnidade" class="form-label">Selecione a unidade</label>
+            <select class="form-control" name="nomeUnidade"
+                  [compareWith]="compareById"
+                  [(ngModel)]="aplicacao.unidadeOndeAplicou" required>
+                  @for(u of unidades; track u.id) {
+                    <option [ngValue]="u"> {{ u.nome }} </option>
+                }
+            </select>
+          </div>
+          <div class="col-md-3 form-group">
+            <label for="dataAplicacao" class="form-label">Data da Aplicação:</label>
+            <input type="date" class="form-control" name="dataAplicacao" id="dataAplicacao"
+                [(ngModel)]="aplicacao.dataAplicacao">
+          </div>
+        </div>
+        <div class="row justify-content-center mt-4">
+          <div class="form-group col-md-2">
+            <button type="submit" class="form-control btn botao-voltar" (click)="voltar()">
+                <i class="bi bi-arrow-left"></i> Voltar
+            </button>
+          </div>
+          <div class="col-md-3">
+            <button type="button" class="form-control btn botao-limpar" (click)="limparFormulario()">
+              <i class="bi bi-x-circle"></i> Limpar
+            </button>
+          </div>
+          <div class="col-md-4">
+            <button type="submit" class="btn btn-primary w-100 botao-cadastrar" (click)="cadastrar()">Cadastrar Aplicação</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+<br><br>
+

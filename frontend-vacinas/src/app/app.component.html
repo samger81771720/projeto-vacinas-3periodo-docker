@@ -1,0 +1,148 @@
+<!-- TELA DE MENU PROVISÓRIA(APENAS PARA VISUALIZAR AS FUNCIONALIDADES DO SISTEMA) -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container-fluid">
+      <a class="navbar-brand titulo-do-sistema" href="#">ONDE TEM VACINA?</a>
+      <div class="opcoes-do-menu">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle titulo" href="#" role="button"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    Usuário
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item func" href="/pessoa/cadastro">CADASTRO DE USUÁRIO</a></li>
+                  <li><a class="dropdown-item func" href="/pessoa/listagem">LISTAGEM DE USUÁRIOS</a></li>
+                </ul>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle titulo" href="#" role="button"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    Onde Encontrar Vacinas
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item func" href="/vacina/listagem">ENCONTRE AQUI A SUA VACINA</a></li>
+                </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle titulo" href="#" role="button"
+                  data-bs-toggle="dropdown" aria-expanded="false">
+                  Central de Aplicações
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item func" href="/aplicacao/cadastro">CADASTRAR APLICAÇÃO</a></li>
+                <li><a class="dropdown-item func" href="/aplicacao/listagem">CARTEIRINHA DE VACINAÇÃO VIRTUAL</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle titulo" href="#" role="button"
+                  data-bs-toggle="dropdown" aria-expanded="false">
+                  Estoques de Vacinas
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item func" href="/estoque/cadastrar">CADASTRO DE ESTOQUE</a></li>
+                <li><a class="dropdown-item func" href="/estoque/listagem">LISTAGEM DOS ESTOQUES</a></li>
+              </ul>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link titulo about" href="#">Sobre</a>
+            </li>
+          </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+<div class="fundo-imagem"></div>
+<router-outlet></router-outlet>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- TELA INICIAL DO SISTEMA -->
+<!--
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container-fluid">
+      <a class="navbar-brand">ONDE TEM VACINA?</a>
+  </div>
+</nav>
+<div class="fundo-imagem">
+  <h1>Seja bem-vindo ao "Onde Tem Vacina"!</h1>
+  <p class="link-login"><a class="frase-acesso-login" href="https://www.google.com/">Clique aqui e faça login para acessar o sistema</a></p>
+</div>
+<br>
+<router-outlet></router-outlet>
+-->
+
+
+
+<!-- TELA DO USUÁRIO -->
+<!--
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container-fluid">
+      <a class="navbar-brand" href="#">ONDE TEM VACINA?</a>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" role="button"
+                      data-bs-toggle="dropdown" aria-expanded="false">
+                      Informações Pessoais
+                  </a>
+                  <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="#">Editar Perfil</a></li>
+                  </ul>
+              </li>
+              <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" role="button"
+                      data-bs-toggle="dropdown" aria-expanded="false">
+                      Pesquisa De Vacinas
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Pesquisa Personalizada de Vacinas</a></li>
+                  </ul>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    Carteirinha De Vacinação Virtual
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="/aplicacao/listagem">Carteirinha Virtual de Vacinação</a></li>
+              </ul>
+            </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="#">Sobre</a>
+              </li>
+          </ul>
+
+      </div>
+  </div>
+</nav>
+
+<div class="fundo-imagem"></div>
+
+<br>
+<router-outlet></router-outlet>
+
+-->
+
+
+
+
+
+

@@ -1,0 +1,51 @@
+version: '3.8' # Especifica a versão do arquivo docker-compose que está sendo usado.
+
+services:  # Define os serviços que serão orquestrados pelo Docker Compose.
+
+  # Serviço para o Mysql
+  mysql:
+    image: mysql:8.0  # Especifica uma imagem do Docker. Essa imagem do Docker é configurada para conter a aplicação MySQL na versão 8.0. Portanto, essa linha indica que estamos utilizando uma imagem específica do Docker que contém a instalação do MySQL na versão 8.0.
+    container_name: mysql_database # Especifica a imagem do Docker para o MySQL, na versão 8.0.
+    ports:
+      - "3307:3306" # Mapeia a porta 3306 do container para a porta 3307 no host.
+    restart: always  # Configura o container para sempre reiniciar em caso de falha.
+    environment: # Define as variáveis de ambiente(abaixo) para configurar o MySQL:
+      MYSQL_ROOT_PASSWORD: root # Define a senha do usuário administrador do MySQL.
+      MYSQL_DATABASE: VACINAS # Cria uma base de dados chamada VACINAS.
+      MYSQL_USER: senac # Cria um usuário no MySQL com o nome 'senac'.("ONDE POSSO VERIFICAR ESSE USUÁRIO CRIADO NO DBEAVER???")
+      MYSQL_PASSWORD: root # Define a senha do usuário 'senac'.("ONDE POSSO VERIFICAR ESSA SENHA CRIADA NO DBEAVER???")
+    command: --default-authentication-plugin=mysql_native_password # Define o plugin de autenticação padrão.  É um software que implementa um método específico para verificar a identidade de um usuário e permitir ou negar o acesso ao banco de dados com base nas credenciais fornecidas. 
+    volumes:
+      - ./projeto-vacinas-3periodo/src/main/resources/scripts:/docker-entrypoint-initdb.d # Mapeia um volume para inicializar o banco de dados com scripts SQL.
+    networks: # é nomeada e criada uma rede especifica chamada "network-vacinas" para estabelecer um elo de comunicação e interação entre o back o front e o banco de dados.
+      - network-vacinas # Conecta o serviço MySQL à rede especificada.
+    
+    # Serviço para o Back End em Java
+  java_app: # Nome do serviço Java.
+    build: # Especifica que o Docker Compose deve construir a imagem do Docker(java_app) para o serviço.
+      context: ./projeto-vacinas-3periodo # Diretório do contexto de build.
+      dockerfile: Dockerfile # Caminho para o Dockerfile a ser usado.
+    ports:
+      - "8080:8080" # Mapeia a porta 8080 do container para a porta 8080 no host.
+    depends_on:
+      - mysql  # Define a dependência do serviço MySQL, garantindo que ele inicie primeiro.
+    networks:
+      - network-vacinas # Conecta o serviço Java à rede especificada.
+
+  # Serviço para o Frontend em "Angular"
+  angular_app:  # Nome do serviço Angular
+    build: # Especifica que o Docker Compose deve construir a imagem do Docker para o serviço desejado.
+      context: ./projeto-vacinas-3periodo-front # Diretório do contexto de build.
+      dockerfile: Dockerfile # Caminho para o Dockerfile a ser usado.
+    ports:
+      - "4200:4200"  # Mapeia a porta 4200 do container para a porta 4200 no host.
+    depends_on:
+      - java_app  # Define a dependência do serviço Java, garantindo que ele inicie primeiro.
+    networks:
+      - network-vacinas # Conecta o serviço Angular à rede especificada.
+      
+networks: # Define a(s) rede(s) usada(s) pelo(s) serviço(s).
+  network-vacinas: # Nome da rede especificada.
+
+  
+      
